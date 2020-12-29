@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//components
+import Main from "./components/Main";
+import Preview from "./components/Preview";
+import HeroPage from "./components/HeroPage";
+//styles
+import "./styles/app.css";
+import "antd/dist/antd.css";
 
-function App() {
+const App: React.FC = (): JSX.Element => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Preview} />
+        <Route path="/main" component={Main} />
+        <Route path="/info/:id">
+          <HeroPage />
+        </Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
